@@ -17,4 +17,9 @@ describe "Author model", :type => :model do
     find('input[type="submit"]').click
     expect(Author.find_by(last_name: "Turing")).not_to be_nil
   end
+
+  it "should validate the author" do
+    @author = Author.new(first_name: "Alan", homepage: "https://example.com")
+    expect(@author).to_not be_valid
+  end
 end

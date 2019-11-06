@@ -15,8 +15,11 @@ describe "New author page", type: :feature do
    expect(page).to have_field('author[homepage]')
  end
 
-  it "should validate the author" do
-    @author = Author.new(first_name: "Alan", homepage: "https://example.com")
-    expect(@author).to_not be_valid
+  it "should display validation errors", :type => :feature do
+    visit new_author_path
+    page.fill_in 'author[first_name]', with: 'Alan'
+    page.fill_in 'author[homepage]', with: 'http://wikipedia.org/Alan_Turing'
+    find('input[type="submit"]').click
+    expect(page).to have_text(/error/)
   end
 end
