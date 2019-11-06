@@ -14,4 +14,9 @@ describe "New author page", type: :feature do
    expect(page).to have_field('author[last_name]')
    expect(page).to have_field('author[homepage]')
  end
+
+  it "should validate the author" do
+    @author = Author.new(first_name: "Alan", homepage: "https://example.com")
+    expect(@author).to_not be_valid
+  end
 end
