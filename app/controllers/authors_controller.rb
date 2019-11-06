@@ -7,6 +7,10 @@ class AuthorsController < ApplicationController
     @authors = Author.all
   end
 
+  def edit
+    @author = Author.find(params[:id])
+  end
+
   def new
     @author = Author.new
   end
