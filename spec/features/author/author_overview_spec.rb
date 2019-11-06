@@ -11,7 +11,13 @@ describe "Author overview page", :type => :feature do
   it "should display edit link", :type => :feature do
     @alan = FactoryBot.create :author
     visit authors_path
-    expect(page).to have_link nil, href: edit_author_path(@alan)
+    expect(page).to have_link "Edit", href: edit_author_path(@alan)
+  end
+
+  it "should display delete link", :type => :feature do
+    @alan = FactoryBot.create :author
+    visit authors_path
+    expect(page).to have_link "Delete", href: author_path(@alan)
   end
 end
 
